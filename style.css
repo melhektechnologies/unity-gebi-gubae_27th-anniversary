@@ -418,6 +418,12 @@ button {
   will-change: transform;
 }
 
+@media (max-width: 768px) {
+  .hero-bg {
+    background-position: center 30%; /* Better focal point for mobile portraits */
+  }
+}
+
 .confetti-overlay {
   position: absolute;
   inset: 0;
@@ -428,6 +434,12 @@ button {
   pointer-events: none;
   animation: floatConfetti 30s linear infinite;
   opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .confetti-overlay {
+    background-size: 300px; /* Smaller confetti for mobile screens */
+  }
 }
 
 @keyframes floatConfetti {
