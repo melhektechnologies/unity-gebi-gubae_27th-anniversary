@@ -923,6 +923,68 @@ button {
   line-height: 1.5;
 }
 
+/* ─── TICKET SECTION ─────────────────────────────────────────── */
+.section-ticket {
+  padding: var(--section-py) 0;
+  background: var(--primary-bg);
+}
+
+.ticket-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .ticket-grid {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
+
+.ticket-visual {
+  position: relative;
+}
+
+.ticket-image-frame {
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-subtle);
+}
+
+.ticket-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s var(--ease-smooth);
+}
+
+.ticket-image-frame:hover .ticket-img {
+  transform: scale(1.03);
+}
+
+.ticket-img-glow {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.ticket-text {
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  .ticket-text {
+    text-align: center;
+  }
+  .ticket-text .gold-rule {
+    margin: 1.5rem auto;
+  }
+}
+
 /* ─── SPIRITUAL FEATURE ───────────────────────────────────────── */
 .section-spiritual {
   position: relative;

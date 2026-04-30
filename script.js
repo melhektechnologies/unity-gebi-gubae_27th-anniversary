@@ -121,6 +121,14 @@ const content = {
     ],
   },
 
+  /* Ticket */
+  ticket: {
+    eyebrow: "የምሥረታ ዕጣ",
+    title: "የዕጣ ትኬት",
+    body: "የ27ኛ ዓመት የምሥረታ በዓላችንን ምክንያት በማድረግ የተዘጋጀ ልዩ የዕጣ መርኃግብር። ትኬቱን በመቁረጥ የበዓሉ ተሳታፊ እንዲሆኑና የበረከቱ ተካፋይ እንዲሆኑ በአክብሮት እንጋብዛለን።",
+    image: "./assets/images/anniversary-ticket.jpg",
+  },
+
   /* Spiritual Feature — Psalm 150 in Ge'ez */
   spiritual: {
     eyebrow: "የመጽሐፍ ቅዱስ ቃል",
@@ -292,6 +300,16 @@ function hydratePage() {
           ${d.sub ? `<span class="detail-sub">${d.sub}</span>` : ""}
         </div>
       </li>`).join("");
+  }
+
+  /* Ticket */
+  setText("ticket-eyebrow", content.ticket.eyebrow);
+  setText("ticket-title", content.ticket.title);
+  setText("ticket-body", content.ticket.body);
+  const tImg = document.getElementById("ticket-img");
+  if (tImg) {
+    tImg.src = content.ticket.image;
+    tImg.onerror = () => { tImg.style.display = "none"; tImg.parentElement && tImg.parentElement.classList.add("img-placeholder"); };
   }
 
   /* Spiritual */
