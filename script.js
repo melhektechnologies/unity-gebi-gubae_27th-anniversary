@@ -126,7 +126,7 @@ const content = {
     eyebrow: "የምሥረታ ዕጣ",
     title: "የዕጣ ትኬት",
     body: "የ27ኛ ዓመት የምሥረታ በዓላችንን ምክንያት በማድረግ የተዘጋጀ ልዩ የዕጣ መርኃግብር። ትኬቱን በመቁረጥ የበዓሉ ተሳታፊ እንዲሆኑና የበረከቱ ተካፋይ እንዲሆኑ በአክብሮት እንጋብዛለን።",
-    image: "./assets/images/anniversary-ticket.jpg",
+    image: "./assets/images/unity-gebi-gubae-27th-anniversary-ticket.jpg",
   },
 
   /* Spiritual Feature — Psalm 150 in Ge'ez */
