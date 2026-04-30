@@ -534,19 +534,25 @@ function initAudio() {
 
   // Try to play on first interaction (global auto-play)
   const playOnInteract = () => {
-    if (audio.paused) {
-      audio.play().then(() => {
-        updateBtnState();
-      }).catch(() => { });
-    }
-    document.removeEventListener("click", playOnInteract);
-    document.removeEventListener("touchstart", playOnInteract);
-    document.removeEventListener("scroll", playOnInteract);
+    if (!audio.paused) return; // already playing
+    
+    audio.play().then(() => {
+      // Success! The browser allowed audio to play.
+      updateBtnState();
+      // Only remove the event listeners if play was successful.
+      document.removeEventListener("click", playOnInteract);
+      document.removeEventListener("touchstart", playOnInteract);
+      document.removeEventListener("scroll", playOnInteract);
+    }).catch((err) => {
+      // Failed (e.g., scroll is not a strong enough user gesture).
+      // Do nothing and wait for a stronger interaction (like a click).
+    });
   };
 
-  document.addEventListener("click", playOnInteract, { once: true });
-  document.addEventListener("touchstart", playOnInteract, { once: true, passive: true });
-  document.addEventListener("scroll", playOnInteract, { once: true, passive: true });
+  // Do not use { once: true }, because if it fails on 'scroll', we still need it to trigger on 'click'
+  document.addEventListener("click", playOnInteract);
+  document.addEventListener("touchstart", playOnInteract, { passive: true });
+  document.addEventListener("scroll", playOnInteract, { passive: true });
 
   if (toggleBtn) {
     toggleBtn.addEventListener("click", (e) => {
