@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="am" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#01183f" />
+
+  <!-- SEO -->
+  <title id="page-title">መርኃ ግብር — Mesreta Invitation</title>
+  <meta name="description" id="page-description" content="ልዩ መንፈሳዊ መርኃ ግብር — ወደ ድግሱ ይጥሩ።" />
+
+  <!-- Preconnect for fallback web fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wdth,wght@100,300..700&family=Noto+Sans+Ethiopic:wdth,wght@75,300..600&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <!-- ══════════════════════════════════════════
+         GLOBAL AUDIO & FLOATING CONTROLS
+    ══════════════════════════════════════════ -->
+  <audio id="bg-audio" src="./assets/audio/gebi-gubae-hymn.mp3" preload="none" loop></audio>
+  <div class="floating-audio-wrap">
+    <button id="global-audio-toggle" class="btn-floating-audio" aria-label="Toggle music">
+      <div class="music-bars">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </div>
+    </button>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+         NAVIGATION
+    ══════════════════════════════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <div class="nav-logos" style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+        <img src="./assets/images/gebi-gubae-logo.png" alt="Gebi Gubae Logo" style="width: 80px; height: auto; filter: drop-shadow(0 0 10px rgba(255, 198, 0, 0.4));">
+        <img src="./assets/images/27th_mesreta_logo.png" alt="27th mesreta Logo" style="height: 90px; width: auto; border-radius: 4px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(255, 198, 0, 0.4));">
+      </div>
+
+      <a href="#hero" class="nav-logo" id="nav-logo-link" aria-label="Home"></a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="#about" id="nav-about"></a></li>
+        <li><a href="#speakers" id="nav-speakers"></a></li>
+        <li><a href="#event-details" id="nav-details"></a></li>
+        <li><a href="#rsvp" id="nav-rsvp" class="nav-cta"></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+  <section id="hero" class="section-hero" role="banner" aria-labelledby="hero-title">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="confetti-overlay"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow" id="hero-eyebrow"></span>
+      <h1 class="hero-title" id="hero-title"></h1>
+      <p class="hero-subtitle" id="hero-subtitle"></p>
+      <div class="hero-meta" id="hero-meta"></div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" id="hero-cta" href="#rsvp"></a>
+        <a class="btn btn-ghost" id="hero-secondary" href="#about"></a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span class="scroll-dot"></span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+         COUNTDOWN
+    ══════════════════════════════════════════ -->
+  <section id="countdown" class="section-countdown reveal" aria-label="Countdown">
+    <div class="container">
+      <p class="countdown-label" id="countdown-label"></p>
+      <div class="countdown-grid" id="countdown-grid" role="timer" aria-live="polite">
+        <div class="cd-block"><span class="cd-num" id="cd-days">00</span><span class="cd-unit"
+            id="cd-days-label"></span></div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-block"><span class="cd-num" id="cd-hours">00</span><span class="cd-unit"
+            id="cd-hours-label"></span></div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-block"><span class="cd-num" id="cd-minutes">00</span><span class="cd-unit"
+            id="cd-minutes-label"></span></div>
+        <div class="cd-sep" aria-hidden="true">:</div>
+        <div class="cd-block"><span class="cd-num" id="cd-seconds">00</span><span class="cd-unit"
+            id="cd-seconds-label"></span></div>
+      </div>
+      <p class="countdown-expired hidden" id="countdown-expired"></p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+         INVITATION LETTER
+    ══════════════════════════════════════════ -->
+  <section id="invitation" class="section-invitation reveal" aria-labelledby="invitation-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow" id="invitation-eyebrow">የጥሪ ካርድ</span>
+        <h2 class="section-title" id="invitation-title">ይህ ጥሪያችን ነው</h2>
+        <div class="gold-rule" aria-hidden="true"></div>
+      </div>
+      
+      <div class="post-wrapper" id="post-wrapper">
+        <!-- The Closed Envelope -->
+        <div class="post-envelope" id="post-envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-bottom"></div>
+          <div class="envelope-content">
+            <div class="post-stamp">☩</div>
+            <h3 style="color:var(--text-light); margin-bottom:0.5rem; font-size:1.5rem;">ለ፡ ውድ ታዳሚ</h3>
+            <p style="color:var(--text-muted); margin-bottom:1.5rem;">ከ፡ ዩኒቲ ግቢ ጉባዔ</p>
+            
+            <div class="click-hint">
+              <svg class="bounce-down" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </div>
+            <button id="btn-open-post" class="btn-open-post">
+              ካርዱን ክፈት (Click to Open)
+            </button>
+          </div>
+        </div>
+        
+        <!-- The Hidden Letter -->
+        <div class="post-letter" id="post-letter">
+          <div class="invitation-card-wrap">
+            <img id="invitation-img" src="./assets/images/invitation-letter.jpg" alt="Invitation Letter" loading="lazy" class="invitation-img" onerror="this.style.display='none';this.parentElement.classList.add('img-placeholder')"/>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+         ABOUT
+    ══════════════════════════════════════════ -->
+  <section id="about" class="section-about reveal" aria-labelledby="about-title">
+    <div class="container about-grid">
+      <div class="about-visual">
+        <div class="about-image-frame">
+          <img id="about-img" class="about-img" src="" alt="" loading="lazy" />
+          <div class="about-img-glow" aria-hidden="true"></div>
+        </div>
+        <div class="about-badge" id="about-badge"></div>
+      </div>
+      <div class="about-text">
+        <span class="section-eyebrow" id="about-eyebrow"></span>
+        <h2 class="section-title" id="about-title"></h2>
+        <div class="gold-rule" aria-hidden="true"></div>
+        <p class="body-text" id="about-body"></p>
+        <p class="body-text" id="about-body2"></p>
+        <p class="body-text" id="about-body3"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+         SPEAKERS
+    ══════════════════════════════════════════ -->
+  <section id="speakers" class="section-speakers reveal" aria-labelledby="speakers-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow" id="speakers-eyebrow"></span>
+        <h2 class="section-title" id="speakers-title"></h2>
+        <div class="gold-rule" aria-hidden="true"></div>
+      </div>
+      <ul class="speakers-grid" id="speakers-grid" role="list"></ul>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+         EVENT DETAILS
+    ══════════════════════════════════════════ -->
+  <section id="event-details" class="section-details reveal" aria-labelledby="details-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow" id="details-eyebrow"></span>
+        <h2 class="section-title" id="details-title"></h2>
+        <div class="gold-rule" aria-hidden="true"></div>
+      </div>
+      <ul class="details-grid" id="details-grid" role="list"></ul>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+         SPIRITUAL FEATURE
+    ══════════════════════════════════════════ -->
+  <section id="spiritual" class="section-spiritual reveal" aria-labelledby="spiritual-title">
+    <div class="spiritual-bg" aria-hidden="true"></div>
+    <div class="container spiritual-inner">
+      <span class="section-eyebrow" id="spiritual-eyebrow"></span>
+      <h2 class="section-title" id="spiritual-title"></h2>
+      <div class="gold-rule" aria-hidden="true"></div>
+      <blockquote class="spiritual-quote" id="spiritual-quote"></blockquote>
+      <cite class="spiritual-cite" id="spiritual-cite"></cite>
+      <p class="body-text spiritual-body" id="spiritual-body"></p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+         GALLERY
+    ══════════════════════════════════════════ -->
+  <section id="gallery" class="section-gallery reveal" aria-labelledby="gallery-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow" id="gallery-eyebrow"></span>
+        <h2 class="section-title" id="gallery-title"></h2>
+        <div class="gold-rule" aria-hidden="true"></div>
+      </div>
+      <ul class="gallery-grid" id="gallery-grid" role="list"></ul>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+         GUESTBOOK
+    ══════════════════════════════════════════ -->
+  <section id="guestbook" class="section-guestbook reveal" aria-labelledby="guestbook-title">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">የእንኳን ደስ አላችሁ መግለጫ</span>
+        <h2 class="section-title" id="guestbook-title">የምኞት መግለጫ (Guestbook)</h2>
+        <div class="gold-rule" aria-hidden="true"></div>
+        <p class="body-text" style="margin-inline:auto; text-align:center;">መልካም ምኞትዎን እና የበዓል መግለጫዎን እዚህ ያስቀምጡ።</p>
+      </div>
+      
+      <div class="guestbook-grid">
+        <form id="guestbook-form" class="guestbook-form">
+          <input type="text" id="gb-name" placeholder="ስም (Name)" required />
+          <textarea id="gb-message" rows="4" placeholder="መልእክት (Message)" required></textarea>
+          <button type="submit" class="btn btn-primary btn-submit">ላክ (Send)</button>
+        </form>
+        
+        <div class="guestbook-entries" id="guestbook-entries" role="list">
+          <!-- Entries will be injected here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+         RSVP
+    ══════════════════════════════════════════ -->
+  <section id="rsvp" class="section-rsvp reveal" aria-labelledby="rsvp-title">
+    <div class="container rsvp-inner">
+      <span class="section-eyebrow" id="rsvp-eyebrow"></span>
+      <h2 class="section-title" id="rsvp-title"></h2>
+      <div class="gold-rule" aria-hidden="true"></div>
+      <p class="body-text" id="rsvp-body"></p>
+      <div class="rsvp-actions" id="rsvp-actions"></div>
+      
+      <div class="share-actions-wrap" style="margin-top: 3rem;">
+        <span class="section-eyebrow" style="margin-bottom:1rem; font-size:0.8rem;">ለወዳጅ ዘመድ ያካፍሉ (Share)</span>
+        <div class="share-actions" id="share-actions"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile FAB -->
+  <a href="#rsvp" class="mobile-fab" aria-label="Support the Event">
+    <span class="fab-icon">&#9993;</span>
+  </a>
+
+  <!-- ══════════════════════════════════════════
+         FOOTER
+    ══════════════════════════════════════════ -->
+  <footer id="footer" class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p class="footer-logo" id="footer-logo"></p>
+      <p class="footer-tagline" id="footer-tagline"></p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <ul id="footer-nav-list" role="list"></ul>
+      </nav>
+      <p class="footer-copy" id="footer-copy"></p>
+      <p class="footer-branding" id="footer-branding" style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-dim);"></p>
+    </div>
+  </footer>
+
+  <!-- Lightbox overlay for gallery -->
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>

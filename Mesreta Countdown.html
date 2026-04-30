@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>27ኛ የምሥረታ በዓል – GEBI GUBAE</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'CustomFont';
+    src: url('./assets/fonts/Benaiah.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: 'CustomFont', sans-serif;
+    height: 100vh;
+    background: linear-gradient(135deg, #010133, #012a2d);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Animated Glow Background */
+body::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(200,154,50,0.25), transparent 70%);
+    top: -100px;
+    right: -100px;
+    animation: floatGlow 6s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+    0%,100% { transform: translateY(0px); }
+    50% { transform: translateY(30px); }
+}
+
+.container {
+    text-align: center;
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 0 40px rgba(0,0,0,0.4);
+    max-width: 900px;
+    width: 90%;
+}
+
+/* Title */
+.title {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    font-size: 16px;
+    opacity: 0.7;
+    margin-bottom: 30px;
+}
+
+/* Countdown */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.time-box {
+    min-width: 120px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+.time-box:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.12);
+}
+
+.number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #C89A32;
+}
+
+.label {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* Footer */
+.footer {
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+/* LIVE state */
+.live {
+    font-size: 36px;
+    font-weight: 800;
+    color: #C89A32;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+@media(max-width:600px){
+    .title { font-size: 28px; }
+    .number { font-size: 28px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <img src="./gebi-gubae-logo.png" alt="Gebi Gubae Logo" style="width:120px; height:auto; margin-bottom:20px; filter: drop-shadow(0 0 10px rgba(200,154,50,0.4));">
+<div class="title"> የዩኒቲ ግቢ ጉባዔ  ፳፯ኛ (27ኛ) ዓመት የምሥረታ በዓል</div>
+    <div class="subtitle"> ማግሰኞ • ሚያዝያ 27፤ 2018 ዓ.ም  • ከረፋዱ 4:30 ላይ እንገናኝ </div>
+    <div id="countdown" class="countdown">
+        <div class="time-box">
+            <div id="days" class="number">00</div>
+            <div class="label">Days</div>
+        </div>
+        <div class="time-box">
+            <div id="hours" class="number">00</div>
+            <div class="label">Hours</div>
+        </div>
+        <div class="time-box">
+            <div id="minutes" class="number">00</div>
+            <div class="label">Minutes</div>
+        </div>
+        <div class="time-box">
+            <div id="seconds" class="number">00</div>
+            <div class="label">Seconds</div>
+        </div>
+    </div>
+
+    <div id="liveMessage" style="display:none;" class="live">
+        🔴 LIVE NOW
+    </div>
+
+    <div class="footer">
+        ግቢ ጉባዔያችን ፤ የፍቅር ማኅደራችን
+    </div>
+</div>
+
+<script>
+// EVENT DATE (May 5, 4:30 AM Ethiopian time = UTC+3)
+const eventDate = new Date("May 5, 2026 10:30:00 GMT+0300").getTime();
+
+const countdown = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+
+    if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").style.display = "none";
+        document.getElementById("liveMessage").style.display = "block";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    document.getElementById("days").innerText = days.toString().padStart(2, '0');
+    document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+
+}, 1000);
+</script>
+
+</body>
+</html>
