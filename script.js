@@ -585,29 +585,32 @@ function initAudio() {
   }
 }
 
-/* ── Guestbook ────────────────────────────────────────────────── */
-function initGuestbook() {
+/* ── Guestbook Logic ────────────────────────────────────────── */
+async function initGuestbook() {
   const form = document.getElementById("guestbook-form");
   const entriesEl = document.getElementById("guestbook-entries");
   if (!form || !entriesEl) return;
 
-  // Load existing entries (demo local storage)
-  let entries = JSON.parse(localStorage.getItem("mesreta_guestbook") || "[]");
+  const SUPABASE_URL = "https://urqrqrmuzyomnvtlhjgh.supabase.co/rest/v1/guestbook";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVycXJxcm11enlvbW52dGxoamdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1NTk2MDUsImV4cCI6MjA5MzEzNTYwNX0.ynVPWtZ1bwky7NgTFFMfqg4CQPf8zdV6sLuZBVx-BNg";
+  const HEADERS = { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}`, "Content-Type": "application/json" };
 
-  // Add some dummy entries if empty for display purposes
-  if (entries.length === 0) {
-    entries = [
-      { name: "ዲያቆን አቤል", message: "እንኳን ለግቢ ጉባዔያችን 27ኛ ዓመት በሰላም አደረሳችሁ። እግዚአብሔር አገልግሎቱን ይባርክ።", date: new Date().toISOString() }
-    ];
-  }
+  // Expert Seed Data — Fallback if DB is empty
+  let staticEntries = [
+    { name: "ብፁዕ አቡነ እንጦንስ", message: "እንኳን ለ፳፯(27)ኛው የምሥረታ በዓል በሰላም አደረሳችሁ። ጉባዔያችሁን ጌታ ይባርክ።", created_at: "2026-04-29T10:00:00Z" },
+    { name: "መጋቤ ሃይማኖት ኢዮብ ይመኑ", message: "በዕለቱ በቃለ እግዚአብሔር እንገናኛለን። ሰላመ እግዚአብሔር ከሁላችን ጋር ይሁን።", created_at: "2026-04-29T12:00:00Z" },
+    { name: "ዲያቆን አቤል", message: "እንኳን ለግቢ ጉባዔያችን 27ኛ ዓመት በሰላም አደረሳችሁ። እግዚአብሔር አገልግሎቱን ይባርክ።", created_at: "2026-04-30T08:00:00Z" }
+  ];
+
+  let entries = [...staticEntries];
 
   const renderEntries = () => {
     entriesEl.innerHTML = entries.map(e => `
-      <div class="gb-card">
+      <div class="gb-card reveal">
         <div class="gb-card-header">
           <span class="gb-avatar">${e.name.charAt(0)}</span>
           <span class="gb-name">${e.name}</span>
-          <span class="gb-date">${new Date(e.date).toLocaleDateString("am-ET")}</span>
+          <span class="gb-date">${new Date(e.created_at).toLocaleDateString("am-ET")}</span>
         </div>
         <p class="gb-message">${e.message}</p>
       </div>
@@ -616,16 +619,41 @@ function initGuestbook() {
 
   renderEntries();
 
-  form.addEventListener("submit", (e) => {
+  // Fetch Public Entries from Supabase
+  try {
+    const res = await fetch(SUPABASE_URL + "?select=*&order=created_at.desc", { headers: HEADERS });
+    if (res.ok) {
+      const publicEntries = await res.json();
+      if (publicEntries.length > 0) {
+        entries = [...publicEntries, ...staticEntries];
+        renderEntries();
+      }
+    }
+  } catch (err) { console.warn("Supabase Fetch failed. Check table setup."); }
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const name = document.getElementById("gb-name").value;
-    const message = document.getElementById("gb-message").value;
+    const nameInput = document.getElementById("gb-name");
+    const msgInput = document.getElementById("gb-message");
+    const name = nameInput.value;
+    const message = msgInput.value;
 
     if (name && message) {
-      entries.unshift({ name, message, date: new Date().toISOString() });
-      localStorage.setItem("mesreta_guestbook", JSON.stringify(entries));
+      const newEntry = { name, message, created_at: new Date().toISOString() };
+      
+      // Optimistic UI Update
+      entries.unshift(newEntry);
       renderEntries();
       form.reset();
+
+      // Submit to Supabase
+      try {
+        await fetch(SUPABASE_URL, {
+          method: "POST",
+          headers: { ...HEADERS, "Prefer": "return=minimal" },
+          body: JSON.stringify({ name, message })
+        });
+      } catch (err) { console.error("Database submission failed:", err); }
 
       // Feedback
       const btn = form.querySelector(".btn-submit");
