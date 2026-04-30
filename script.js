@@ -70,7 +70,7 @@ const content = {
     body3: "በዕለቱም ጸሎተ ወንጌል ፣ቃለ እግዚአብሔር ፣ ኪነ ጥበባዊ ዝግጅቶች ፣ የኅብረት ዝማሬ፣ አጋፔ (የፍቅር ማዕድ) አንዲሁም ሌሎች አስተማሪና አዝናኝ መርኃግብራት ይኖራሉ። ከዚህ በፊት በግቢ ጉባዔያችን ያለፋችሁ ፣ አሁንም ያላችሁ፣ ሁላችሁም ከወዳጅ ከዘመዳቹ ጋር ትመጡ ዘንድ በፍቅር ጠርተናችኋል።",
     badge: "☩\n፳፯(27)ኛ ዓመት የምሥረታ በዓል\n2018 ዓ.ም",
     image: {
-      src: "./assets/images/27th_mesreta_logo.JPG",
+      src: "./assets/images/27th_mesreta_logo.jpg",
       alt: "ዝክር — ቤተ ክርስቲያን ምዕመናን",
     },
   },
@@ -90,13 +90,13 @@ const content = {
         name: "መልአከ ብርሃን ቀሲስ ሰሎሞን በቀለ",
         role: "ካህን",
         bio: "የገርጂ ኆኅተ ብርሃን ቅድስት ማርያም ካቴድራል አስተዳዳሪ።",
-        image: "./assets/images/speakers/kesis solomon.JPG",
+        image: "./assets/images/speakers/kesis solomon.jpg",
       },
       {
         name: "መጋቤ ሃይማኖት ኢዮብ ይመኑ",
         role: "መምህር",
         bio: "የዕለቱ ቃለ እግዚአብሔር መምህር።",
-        image: "./assets/images/speakers/eyob yimenu.JPG",
+        image: "./assets/images/speakers/eyob yimenu.jpg",
       },
       // {
       //   name: "ዘማሪ ቀዳሜጽጋ ዮሐንስ",
@@ -135,10 +135,10 @@ const content = {
     eyebrow: "ትዝታዎቻቸን",
     title: "ካለፉ በዓሎቻችን",
     images: [
-      { src: "./assets/images/gallery/memory 1.JPG", alt: "" },
-      { src: "./assets/images/gallery/memory 2.JPG", alt: "" },
+      { src: "./assets/images/gallery/memory 1.jpg", alt: "" },
+      { src: "./assets/images/gallery/memory 2.jpg", alt: "" },
       { src: "./assets/images/gallery/memory 3.JPG", alt: "" },
-      { src: "./assets/images/gallery/memory 4.JPG", alt: "" },
+      { src: "./assets/images/gallery/memory 4.jpg", alt: "" },
       { src: "./assets/images/gallery/memory 5.JPG", alt: "" },
       { src: "./assets/images/gallery/memory 6.JPG", alt: "" },
     ],
