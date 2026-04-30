@@ -44,7 +44,12 @@ const content = {
     ctaLabel: "መርኃግብሩን ለማገዝ",
     ctaHref: "tel:+251972237318",
     secondaryLabel: "Add to Google Calendar",
-    secondaryHref: "https://www.google.com/calendar/render?action=TEMPLATE&text=%E1%8B%A8%E1%8B%AD%E1%8A%92%E1%89%B2%20%E1%8A%95%E1%8A%A2%20%E1%8A%92%E1%8A%A3%E1%8B%94%20%E1%BD%93%E1%BD%B7(27%E1%8A%9B)%20%E1%8B%93%E1%88%98%E1%89%B5%20%E1%8B%A8%E1%88%9D%E1%8A%A5%E1%88%A8%E1%89%B3%20%E1%89%A0%E1%8B%93%E1%88%8D&dates=20260505T073000Z/20260505T130000Z&details=%E1%8A%A5%E1%8A%95%E1%8A%B3%E1%8A%95%20%E1%88%88%E1%8A%95%E1%8A%A2%20%E1%8A%92%E1%8A%A3%E1%8B%94%E1%8B%AB%E1%8A%BD%E1%8A%95%2027%E1%8A%9B%20%E1%8B%93%E1%8B%98%E1%89%B5%20%E1%8B%A8%E1%88%8D%E1%8B%B0%E1%89%B5%20%E1%89%A0%E1%8B%93%E1%88%8D%20%E1%89%A0%E1%88%B0%E1%88%8B%E1%88%9D%20%E1%8A%A0%E1%8B%B0%E1%88%A8%E1%88%B3%E1%89%BD%E1%88%81!&location=Gerji%20Maryam%20Cathedral,%20Addis%20Ababa",
+    calendar: {
+      title: "የዩኒቲ ግቢ ጉባዔ ፳፯(27ኛ) ዓመት የምሥረታ በዓል",
+      dates: "20260505T073000Z/20260505T130000Z",
+      details: "እንኳን ለዩኒቲ ግቢ ጉባዔ 27ኛ ዓመት የምሥረታ በዓል በሰላም አደረሳችሁ!",
+      location: "Gerji Maryam Cathedral, Addis Ababa",
+    },
     bgImage: "./assets/images/hero.jpg",
   },
 
@@ -239,7 +244,16 @@ function hydratePage() {
   const cta = document.getElementById("hero-cta");
   if (cta) { cta.textContent = content.hero.ctaLabel; cta.href = content.hero.ctaHref; }
   const sec = document.getElementById("hero-secondary");
-  if (sec) { sec.textContent = content.hero.secondaryLabel; sec.href = content.hero.secondaryHref; }
+  if (sec) {
+    const cal = content.hero.calendar;
+    const calUrl = "https://www.google.com/calendar/render?action=TEMPLATE"
+      + "&text=" + encodeURIComponent(cal.title)
+      + "&dates=" + cal.dates
+      + "&details=" + encodeURIComponent(cal.details)
+      + "&location=" + encodeURIComponent(cal.location);
+    sec.textContent = content.hero.secondaryLabel;
+    sec.href = calUrl;
+  }
 
   /* Countdown */
   setText("countdown-label", content.countdown.label);
